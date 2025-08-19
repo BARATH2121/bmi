@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Smart BMI Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Theme toggle -->
+  <label class="theme-switch" aria-label="Toggle dark mode">
+    <input type="checkbox" id="toggleTheme" />
+    <span class="slider"></span>
+  </label>
+
+  <main class="card" role="main" aria-labelledby="appTitle">
+    <header class="header">
+      <h1 id="appTitle">Smart BMI Calculator</h1>
+      <div class="header-actions">
+        <button id="aboutBtn" class="link-btn" aria-haspopup="dialog">About</button>
+      </div>
+    </header>
+
+    <!-- Unit Toggle -->
+    <div class="unit-row" role="group" aria-label="Units">
+      <label class="chip">
+        <input type="radio" name="units" value="metric" checked />
+        <span>cm/kg</span>
+      </label>
+      <label class="chip">
+        <input type="radio" name="units" value="imperial" />
+        <span>ft-in/lb</span>
+      </label>
+    </div>
+
+    <!-- Inputs -->
+    <div class="grid">
+      <div class="field">
+        <label for="age">Age</label>
+        <input id="age" type="number" min="5" max="120" placeholder="e.g. 22" />
+        <small class="hint" id="ageHint"></small>
+      </div>
+
+      <div class="field">
+        <label for="gender">Gender</label>
+        <select id="gender">
+          <option value="unspecified" selected>Prefer not to say</option>
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="metricInputs" class="grid">
+      <div class="field">
+        <label for="height">Height (cm)</label>
+        <input id="height" type="number" placeholder="e.g. 170" min="80" max="300" />
+        <small class="hint" id="heightHint"></small>
+      </div>
+      <div class="field">
+        <label for="weight">Weight (kg)</label>
+        <input id="weight" type="number" placeholder="e.g. 65" min="10" max="350" />
+        <small class="hint" id="weightHint"></small>
+      </div>
+    </div>
+
+    <div id="imperialInputs" class="grid hidden">
+      <div class="field">
+        <label>Height (ft/in)</label>
+        <div class="row">
+          <input id="heightFt" type="number" placeholder="ft" min="2" max="8" />
+          <input id="heightIn" type="number" placeholder="in" min="0" max="11" />
+        </div>
+        <small class="hint" id="heightImpHint"></small>
+      </div>
+      <div class="field">
+        <label for="weightLb">Weight (lb)</label>
+        <input id="weightLb" type="number" placeholder="e.g. 150" min="22" max="770" />
+        <small class="hint" id="weightLbHint"></small>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="calc" class="primary">Calculate BMI</button>
+      <button id="reset" class="ghost">Reset</button>
+    </div>
+
+    <!-- Result Section -->
+    <section id="output" class="hidden" aria-live="polite">
+      <div class="result-top">
+        <div class="gauge" aria-hidden="true">
+          <svg viewBox="0 0 120 60">
+            <!-- background arc -->
+            <path d="M10,60 A50,50 0 0 1 110,60" class="gauge-bg"></path>
+            <!-- progress arc -->
+            <path id="gaugeArc" d="M10,60 A50,50 0 0 1 10,60" class="gauge-fill"></path>
+          </svg>
+          <div class="gauge-label" id="bmiGaugeVal">--</div>
+        </div>
+        <div class="result-text">
+          <p id="bmiVal"></p>
+          <p id="category"></p>
+          <p id="normalRange"></p>
+        </div>
+      </div>
+
+      <h3>Recommended Actions</h3>
+      <ul id="advice"></ul>
+
+      <h3>1-Day Sample Food Chart</h3>
+      <table id="foodTable">
+        <thead>
+          <tr><th>Meal</th><th>Food Example</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div class="share-row">
+        <button id="copyBtn" class="link-btn">Copy Result</button>
+        <button id="shareBtn" class="link-btn">Share</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- About Modal -->
+  <dialog id="aboutModal" aria-labelledby="aboutTitle">
+    <form method="dialog" class="about-card">
+      <h2 id="aboutTitle">About Smart BMI Calculator</h2>
+      <p>
+        Smart BMI Calculator helps estimate body mass index from height and weight,
+        classifies the result, and suggests actionable tips and a simple food chart.
+        It supports metric and imperial units, dark mode, and result sharing.
+      </p>
+      <ul class="about-list">
+        <li>Offline, client-side only</li>
+        <li>No data collection</li>
+        <li>Educational guidance only — not medical advice</li>
+      </ul>
+      <div class="about-actions">
+        <button value="cancel" class="primary">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
