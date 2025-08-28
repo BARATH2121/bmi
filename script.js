@@ -1,3 +1,14 @@
+// Intro page logic
+const introPage = document.getElementById('introPage');
+const calcPage = document.getElementById('calcPage');
+const startBtn = document.getElementById('startBtn');
+
+if (introPage && calcPage && startBtn) {
+  startBtn.addEventListener('click', () => {
+    introPage.classList.add('hidden');
+    calcPage.classList.remove('hidden');
+  });
+}
 // Elements
 const heightEl = document.getElementById('height');
 const weightEl = document.getElementById('weight');
