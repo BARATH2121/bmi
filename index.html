@@ -12,7 +12,17 @@
     <span class="slider"></span>
   </label>
 
-  <main class="card" role="main" aria-labelledby="appTitle">
+  <!-- Intro Page -->
+  <section id="introPage" class="intro-card">
+    <h1>Welcome to Smart BMI Calculator</h1>
+    <p>
+      This tool helps you estimate your Body Mass Index (BMI), provides health tips, and a sample food chart. All calculations are client-side and private.
+    </p>
+    <button id="startBtn" class="primary">Start</button>
+    <div class="creator-note">Created by YOGIRAM</div>
+  </section>
+
+  <main class="card hidden" id="calcPage" role="main" aria-labelledby="appTitle">
     <header class="header">
       <h1 id="appTitle">Smart BMI Calculator</h1>
       <div class="header-actions">
